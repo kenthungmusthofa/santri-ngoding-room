@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tingkatan Sabuk Pagar Nusa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --primary: #16a34a;
+      --accent: #facc15;
+      --bg: #020617;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --radius: 16px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.75);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: radial-gradient(circle at top, #032a22 0%, #020617 40%, #000 100%);
+      background-size: 200% 200%;
+      animation: bgMove 18s ease-in-out infinite;
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    @keyframes bgMove {
+      0%,100% { background-position: 0 0; }
+      50%      { background-position: 100% 100%; }
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15,23,42,0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(148,163,184,0.4);
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #16a34a, #064e3b);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid #22c55e;
+      box-shadow: 0 0 16px rgba(34,197,94,0.85);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .back-link {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--muted);
+      background: rgba(15,23,42,0.9);
+      font-size: 12px;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+    }
+
+    .back-link:hover {
+      border-color: #22c55e;
+      box-shadow: 0 0 16px rgba(34,197,94,0.9);
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1000px;
+      margin: 22px auto 12px;
+      padding: 22px 20px;
+      border-radius: 18px;
+      background: linear-gradient(to right, #064e3b, #020617ee);
+      border: 1px solid rgba(34,197,94,0.5);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
+      gap: 20px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(34,197,94,0.16), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(250,204,21,0.16), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-belt-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .belt-chip {
+      height: 20px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      font-size: 11px;
+      border: 1px solid rgba(15,23,42,0.8);
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
+    }
+
+    .belt-base {
+      background: #065f46;
+      color: #e5e7eb;
+    }
+
+    .badge-white   { background: #f9fafb; color: #111827; }
+    .badge-yellow  { background: #facc15; color: #1f2937; }
+    .badge-red     { background: #ef4444; color: #f9fafb; }
+    .badge-blue    { background: #2563eb; color: #f9fafb; }
+    .badge-brown   { background: #92400e; color: #f9fafb; }
+    .badge-black   { background: #020617; color: #f9fafb; }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(34,197,94,0.8);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+      margin-bottom: 8px;
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      text-shadow: 0 0 10px rgba(250,204,21,0.9);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    .hero-sub span {
+      color: #bbf7d0;
+      font-weight: 600;
+    }
+
+    /* CONTENT */
+
+    .content {
+      max-width: 1000px;
+      margin: 18px auto 40px;
+      padding: 0 14px;
+    }
+
+    .card {
+      background: rgba(2,6,23,0.9);
+      border-radius: var(--radius);
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow);
+      padding: 18px 18px 16px;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(34,197,94,0.07), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(250,204,21,0.05), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #bbf7d0;
+    }
+
+    p {
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .belt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 750px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .belt-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .belt-card {
+      border-radius: 12px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.95);
+      padding: 10px 11px;
+      font-size: 13px;
+    }
+
+    .belt-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .badge-dot {
+      width: 18px;
+      height: 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,0.8);
+      box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    }
+
+    .belt-role {
+      font-size: 11px;
+      color: #cbd5f5;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .highlight {
+      color: #bbf7d0;
+      font-weight: 600;
+    }
+
+    footer {
+      max-width: 1000px;
+      margin: 0 auto 26px;
+      padding: 0 14px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">
+          <img src="logo-pagar-nusa.png" alt="Logo Pagar Nusa" class="logo-img">
+        </div>
+        <div>
+          <div class="brand-title">Pagar Nusa</div>
+          <div class="brand-sub">Tingkatan Sabuk</div>
+        </div>
+      </div>
+
+      <a href="index.html" class="back-link">
+        <span class="icon">←</span>
+        <span>Kembali</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-belt-stack">
+      <div class="belt-chip belt-base">
+        <span>Dasar sabuk</span><span>Hijau</span>
+      </div>
+      <div class="belt-chip badge-white">
+        <span>Badge Putih</span><span>Pemula</span>
+      </div>
+      <div class="belt-chip badge-yellow">
+        <span>Badge Kuning</span><span>Lanjutan dasar</span>
+      </div>
+      <div class="belt-chip badge-red">
+        <span>Badge Merah</span><span>Lanjutan</span>
+      </div>
+      <div class="belt-chip badge-blue">
+        <span>Badge Biru</span><span>Asisten pelatih</span>
+      </div>
+      <div class="belt-chip badge-brown">
+        <span>Badge Cokelat</span><span>Tingkat tinggi</span>
+      </div>
+      <div class="belt-chip badge-black">
+        <span>Badge Hitam</span><span>Pelatih / ahli</span>
+      </div>
+    </div>
+    <div>
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        tingkatan sabuk pagar nusa
+      </div>
+      <h1 class="hero-title">Urutan Sabuk & Badge Pagar Nusa</h1>
+      <p class="hero-sub">
+        Di Pagar Nusa, sabuk punya <span>dasar hijau</span> dengan badge warna di ujung sabuk:
+        putih, kuning, merah, biru, cokelat, hingga hitam. Setiap badge menandai
+        perjalanan santri dari pemula sampai dipercaya sebagai pelatih.
+      </p>
+    </div>
+  </section>
+
+  <main class="content">
+    <!-- Penjelasan umum -->
+    <section class="card" data-animate>
+      <div class="section-label">Gambaran Umum</div>
+      <h2 class="section-title">Sistem Sabuk Hijau & Badge Warna</h2>
+      <p>
+        Pagar Nusa memakai sistem sabuk dengan <span class="highlight">warna dasar hijau</span>.
+        Tingkatannya dibedakan lewat badge kecil di ujung sabuk: putih, kuning, merah,
+        biru, cokelat, dan hitam. Urutan ini dipakai sebagai penanda kemampuan teknis,
+        kedewasaan sikap, dan kesiapan tanggung jawab dalam organisasi.
+      </p>
+      <p class="muted" style="margin-top:6px;">
+        Catatan: di beberapa tempat ada varian internal, tapi pakem pusatnya tetap sabuk hijau
+        dengan badge warna sebagai penanda tingkat.
+      </p>
+    </section>
+
+    <!-- Grid tingkatan -->
+    <section class="card" data-animate>
+      <div class="section-label">Urutan Tingkatan</div>
+      <h2 class="section-title">Dari Pemula Sampai Pelatih</h2>
+
+      <div class="belt-grid">
+        <!-- Putih -->
+        <article class="belt-card">
+          <div class="belt-label">
+            <span>Sabuk Hijau</span>
+            <span class="badge-dot badge-white"></span>
+          </div>
+          <div class="belt-role">TINGKAT DASAR • ANGGOTA (SANTRI)</div>
+          <p>
+            Level paling awal untuk yang baru mulai latihan. Fokus di sini adalah
+            <span class="highlight">dasar gerak, disiplin, dan adab latihan</span>.  
+            Santri belajar posisi, pukulan, tendangan, dan pola dasar, sambil membiasakan diri
+            dengan kultur Pagar Nusa.
+          </p>
+        </article>
+
+        <!-- Kuning -->
+        <article class="belt-card">
+          <div class="belt-label">
+            <span>Sabuk Hijau</span>
+            <span class="badge-dot badge-yellow"></span>
+          </div>
+          <div class="belt-role">LANJUTAN DASAR • ANGGOTA (SANTRI)</div>
+          <p>
+            Di badge kuning, teknik dasar sudah mulai rapi. Santri memperdalam
+            <span class="highlight">jurus-jurus pokok dan prinsip gerak</span>, koordinasi badan
+            lebih terkontrol, dan mulai dikenalkan pola serang-bela sederhana.  
+          </p>
+        </article>
+
+        <!-- Merah -->
+        <article class="belt-card">
+          <div class="belt-label">
+            <span>Sabuk Hijau</span>
+            <span class="badge-dot badge-red"></span>
+          </div>
+          <div class="belt-role">LANJUTAN • ANGGOTA (SANTRI)</div>
+          <p>
+            Badge merah menandai fase lanjutan: teknik mulai kompleks, kombinasi jurus,
+            serta <span class="highlight">strategi pertahanan dan serangan</span> lebih variatif.
+            Santri dituntut kuat fisik dan stabil mental karena materi makin padat.
+          </p>
+        </article>
+
+        <!-- Biru -->
+        <article class="belt-card">
+          <div class="belt-label">
+            <span>Sabuk Hijau</span>
+            <span class="badge-dot badge-blue"></span>
+          </div>
+          <div class="belt-role">LANJUTAN TINGGI • ANGGOTA (ASISTEN PELATIH)</div>
+          <p>
+            Sabuk hijau badge biru biasanya diberikan pada anggota yang mulai
+            <span class="highlight">membantu melatih</span>.  
+            Penguasaan teknik sudah luas, pemahaman filosofi latihan makin dalam, dan santri
+            mulai belajar cara menyampaikan materi ke adik tingkat.
+          </p>
+        </article>
+
+        <!-- Cokelat -->
+        <article class="belt-card">
+          <div class="belt-label">
+            <span>Sabuk Hijau</span>
+            <span class="badge-dot badge-brown"></span>
+          </div>
+          <div class="belt-role">TINGKAT SANGAT TINGGI</div>
+          <p>
+            Di badge cokelat, fokusnya bukan cuma jurus, tapi juga
+            <span class="highlight">kehalusan gerak, timing, dan kematangan sikap</span>.  
+            Pendekar di level ini biasanya sudah sangat dipercaya dalam kegiatan internal,
+            baik di gelanggang maupun di luar latihan.
+          </p>
+        </article>
+
+        <!-- Hitam -->
+        <article class="belt-card">
+          <div class="belt-label">
+            <span>Sabuk Hijau</span>
+            <span class="badge-dot badge-black"></span>
+          </div>
+          <div class="belt-role">TINGKAT TERTINGGI • ANGGOTA TETAP (PELATIH)</div>
+          <p>
+            Sabuk hijau badge hitam adalah <span class="highlight">puncak tingkatan</span>.
+            Di sini seseorang dianggap sudah matang sebagai pendekar dan pelatih: menguasai
+            teknik, memahami strategi, dan siap mengemban amanah membina generasi berikutnya.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- UKT -->
+    <section class="card" data-animate>
+      <div class="section-label">Ujian Kenaikan Tingkat</div>
+      <h2 class="section-title">Naik Sabuk Bukan Cuma Soal Waktu</h2>
+      <p>
+        Untuk naik dari satu badge ke badge berikutnya, anggota wajib melalui
+        <span class="highlight">Ujian Kenaikan Tingkat (UKT)</span>.  
+        UKT dipakai untuk mengukur sejauh mana santri menguasai materi: teknik fisik,
+        pemahaman teori, adab, dan kedisiplinan kehadiran latihan.
+      </p>
+      <p style="margin-top:6px;" class="muted">
+        Di banyak daerah, UKT Pagar Nusa diadakan berkala (sekitar beberapa bulan sekali), dan
+        sebagian tempat juga memberi promosi bagi anggota yang aktif bertanding serta
+        menunjukkan kemampuan menonjol saat sparring.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Pagar Nusa. Ringkasan tingkatan sabuk ini disusun berdasarkan panduan tingkatan & badge resmi Pagar Nusa.
+  </footer>
+
+  <script>
+    // tahun
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // animasi scroll
+    const cards = document.querySelectorAll("[data-animate]");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    cards.forEach((card) => observer.observe(card));
+  </script>
+</body>
+</html>

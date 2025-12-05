@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pagar Nusa Ngadirojo - Portal Kepagarnusaan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #136f63;
+      --primary-dark: #0e5148;
+      --accent: #f4b41a;
+      --danger: #dc2626;
+      --bg: #020617;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #022c22 0%, #020617 35%, #000 100%);
+      background-size: 200% 200%;
+      color: var(--text);
+      line-height: 1.6;
+      animation: bgMove 16s ease-in-out infinite;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ====== GLOBAL ANIMATIONS ====== */
+    @keyframes bgMove {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes heroGlowAdmin {
+      0%,100% { box-shadow: 0 0 30px rgba(244,180,26,0.25); }
+      50% { box-shadow: 0 0 60px rgba(244,180,26,0.55); }
+    }
+
+    @keyframes heroGlowSantri {
+      0%,100% { box-shadow: 0 0 28px rgba(34,197,94,0.28); }
+      50% { box-shadow: 0 0 60px rgba(34,197,94,0.7); }
+    }
+
+    @keyframes flickerTitle {
+      0%,19%,21%,23%,25%,54%,56%,100% { text-shadow: 0 0 8px rgba(248,250,252,0.7), 0 0 22px rgba(16,185,129,0.6); }
+      20%,24%,55% { text-shadow: none; }
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(12px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes cardHoverPulse {
+      0%,100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-2px) scale(1.01); }
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    /* ====== HEADER ====== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15,23,42,0.95);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(148,163,184,0.35);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #16a34a, #022c22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(34,197,94,0.8);
+      overflow: hidden;
+      border: 1px solid rgba(74,222,128,0.7);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      padding: 4px 0;
+      position: relative;
+      color: #cbd5f5;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right,#22c55e,#facc15);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 18px;
+    }
+
+    .login-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: radial-gradient(circle at top,#0f172a,#020617);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #e5e7eb;
+      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease, border-color 0.15s ease;
+      box-shadow: 0 0 0 rgba(34,197,94,0);
+    }
+
+    .login-btn:hover {
+      background: radial-gradient(circle at top,#111827,#020617);
+      box-shadow: 0 0 16px rgba(34,197,94,0.5);
+      transform: translateY(-1px);
+      border-color: rgba(34,197,94,0.8);
+    }
+
+    .login-btn span.icon {
+      font-size: 14px;
+    }
+
+    .login-btn.is-admin {
+      box-shadow: 0 0 18px rgba(250,204,21,0.8);
+      border-color: rgba(250,204,21,0.9);
+    }
+
+    .login-btn.is-santri {
+      box-shadow: 0 0 18px rgba(34,197,94,0.9);
+      border-color: rgba(34,197,94,1);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 16px auto 40px;
+      padding: 0 16px;
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      margin-top: 16px;
+      padding: 24px 20px;
+      border-radius: 20px;
+      background: radial-gradient(circle at top left,#064e3b,#020617);
+      border: 1px solid rgba(55,65,81,0.9);
+      color: #f9fafb;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 24px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(34,197,94,0.06), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(250,204,21,0.07), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    body.admin-mode .hero {
+      animation: heroGlowAdmin 4s ease-in-out infinite;
+    }
+
+    body.santri-mode .hero {
+      animation: heroGlowSantri 3s ease-in-out infinite;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    .hero-title {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      animation: flickerTitle 4.5s infinite;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.7);
+      font-size: 11px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(34,197,94,0.7);
+      box-shadow: 0 0 15px rgba(34,197,94,0.6);
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-lead {
+      font-size: 14px;
+      margin-bottom: 16px;
+      color: #e5e7eb;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: #cbd5f5;
+    }
+
+    .hero-media {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-photo-wrapper {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(34,197,94,0.45);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.9);
+      transform-origin: center;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .hero-photo-wrapper:hover {
+      transform: scale(1.04) translateY(-4px);
+      box-shadow: 0 26px 70px rgba(0,0,0,1);
+      border-color: rgba(250,204,21,0.8);
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.1) saturate(1.1);
+    }
+
+    @media (max-width: 800px) {
+      .hero-photo {
+        height: 200px;
+      }
+    }
+
+    .hero-card {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(75,85,99,0.9);
+      font-size: 13px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.9);
+    }
+
+    .hero-card-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .hero-card-logo-img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #020617;
+      padding: 4px;
+      border: 1px solid rgba(34,197,94,0.7);
+      box-shadow: 0 0 18px rgba(34,197,94,0.8);
+    }
+
+    .hero-card-logo-text {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #bbf7d0;
+    }
+
+    .hero-card-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(34,197,94,0.7);
+      color: #bbf7d0;
+    }
+
+    /* ====== GRID & CARDS ====== */
+    .grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top,#020617,#020617);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(55,65,81,0.9);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(34,197,94,0.07), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(250,204,21,0.04), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      animation: floatUp 0.6s ease-out;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .list {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .list li {
+      padding: 6px 0;
+      font-size: 14px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .list-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      margin-top: 7px;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: #020617;
+      color: #e5e7eb;
+      border: 1px solid rgba(148,163,184,0.6);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .timeline {
+      border-left: 2px solid rgba(55,65,81,0.9);
+      margin-top: 8px;
+      padding-left: 14px;
+    }
+
+    .timeline-item {
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: 4px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #020617;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 12px rgba(34,197,94,0.8);
+    }
+
+    .timeline-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .timeline-desc {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .info-item-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .info-item-value {
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .badge-soft {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 11px;
+      color: #e5e7eb;
+      margin-top: 4px;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .editable {
+      transition: background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .editable.edit-mode {
+      background: rgba(15,23,42,0.9);
+      box-shadow: 0 0 0 1px rgba(250,204,21,0.6);
+    }
+
+    /* ====== SELENGKAPNYA ====== */
+    .selengkapnya-section {
+      margin-top: 26px;
+      animation: cardHoverPulse 4.5s ease-in-out infinite alternate;
+    }
+
+    .selengkapnya-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .selengkapnya-btn {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid rgba(34,197,94,0.7);
+      background: radial-gradient(circle at top,#022c22,#020617);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(34,197,94,0.5);
+      transform: translateY(0);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .selengkapnya-btn span.icon {
+      font-size: 14px;
+    }
+
+    .selengkapnya-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(250,204,21,0.7);
+      border-color: rgba(250,204,21,0.9);
+    }
+
+    /* ====== ADMIN PANEL ====== */
+    .admin-panel {
+      margin-top: 24px;
+      padding: 14px 14px 12px;
+      border-radius: 14px;
+      background: #020617;
+      color: #e5e7eb;
+      border: 1px solid rgba(55,65,81,0.9);
+      display: none;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.9);
+    }
+
+    .admin-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .admin-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .admin-btn {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+    }
+
+    .admin-btn:hover {
+      background: #111827;
+      transform: translateY(-1px);
+      box-shadow: 0 0 16px rgba(250,204,21,0.6);
+    }
+
+    .admin-badge {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* ====== LOGIN MODAL ====== */
+    .login-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 20;
+    }
+
+    .login-modal {
+      width: 100%;
+      max-width: 380px;
+      background: #020617;
+      border-radius: 18px;
+      padding: 18px 18px 14px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.9);
+      border: 1px solid rgba(148,163,184,0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-modal::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(34,197,94,0.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(220,38,38,0.18), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .login-modal > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .login-modal-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .close-btn {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      cursor: pointer;
+      color: #9ca3af;
+      line-height: 1;
+    }
+
+    .login-modal-sub {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .login-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .login-tab {
+      flex: 1;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .login-tab.active {
+      background: radial-gradient(circle at top,#16a34a,#065f46);
+      border-color: rgba(34,197,94,0.9);
+      box-shadow: 0 0 18px rgba(34,197,94,0.7);
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .input {
+      width: 100%;
+      padding: 8px 9px;
+      font-size: 13px;
+      border-radius: 10px;
+      border: 1px solid rgba(75,85,99,0.9);
+      outline: none;
+      background: #020617;
+      color: #e5e7eb;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(34,197,94,0.6);
+      background: #020617;
+    }
+
+    .login-hint {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    .login-submit {
+      width: 100%;
+      margin-top: 4px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(to right,#16a34a,#22c55e);
+      color: #020617;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+      box-shadow: 0 0 18px rgba(34,197,94,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .login-submit:hover {
+      background: linear-gradient(to right,#22c55e,#a3e635);
+      box-shadow: 0 0 26px rgba(250,250,250,0.7);
+      transform: translateY(-1px);
+    }
+
+    .login-error {
+      font-size: 12px;
+      color: #fecaca;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .login-error strong {
+      color: #f87171;
+    }
+
+    .login-modal.shake {
+      animation: shake 0.35s linear;
+    }
+
+    /* ====== TOAST & FOOTER ====== */
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      right: 16px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 12px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+      z-index: 30;
+      border: 1px solid rgba(34,197,94,0.7);
+    }
+
+    .toast-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34,197,94,0.9);
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 0 auto 24px;
+      padding: 0 16px;
+      font-size: 11px;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGIN MODAL -->
+  <div class="login-modal-backdrop" id="loginBackdrop">
+    <div class="login-modal" role="dialog" aria-modal="true" id="loginModal">
+      <div class="login-modal-header">
+        <div>
+          <div class="login-modal-title">Login Pagar Nusa</div>
+          <div class="login-modal-sub">Pilih mode login: admin atau santri.</div>
+        </div>
+        <button class="close-btn" id="closeLogin" aria-label="Tutup">&times;</button>
+      </div>
+
+      <div class="login-tabs">
+        <button type="button" class="login-tab active" data-role="admin" id="tabAdmin">Login Admin</button>
+        <button type="button" class="login-tab" data-role="santri" id="tabSantri">Login Santri</button>
+      </div>
+
+      <form id="loginForm">
+        <!-- ADMIN FIELDS -->
+        <div id="adminFields">
+          <div class="form-group">
+            <label class="form-label" for="username">Username</label>
+            <input class="input" id="username" autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input class="input" type="password" id="password" autocomplete="current-password" />
+          </div>
+        </div>
+
+        <!-- SANTRI FIELDS -->
+        <div id="santriFields" style="display:none;">
+          <div class="form-group">
+            <label class="form-label" for="kataKunci">Kata kunci Santri</label>
+            <input class="input" id="kataKunci" placeholder="contoh: pagar nusa" />
+            <p class="login-hint">
+              Gunakan kata kunci: <code>pagar nusa</code> atau <code>pagarnya_nu_dan_bangsa</code>.
+            </p>
+          </div>
+        </div>
+
+        <button type="submit" class="login-submit">Masuk</button>
+        <div class="login-error" id="loginError">
+          <strong>Gagal masuk.</strong> Cek lagi data login kamu.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <div class="toast-dot"></div>
+    <span id="toastMessage">Perubahan disimpan.</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <!-- kalau mau pakai logo gambar, ganti isi div ini dengan <img src="logo-pagar-nusa.png" class="logo-img" /> -->
+        <div class="logo-circle">NU</div>
+        <div class="brand-text">
+          <div class="brand-title">Pagar Nusa Ngadirojo</div>
+          <div class="brand-sub">Kepagarnusaan • NKRI • Aswaja</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <nav class="nav-links">
+          <a href="#pengertian">Pengertian</a>
+          <a href="#tujuan">Tujuan</a>
+          <a href="#praktik">Praktik</a>
+        </nav>
+        <button class="login-btn" id="loginBtn">
+          <span class="icon">🔑</span>
+          <span id="loginBtnText">Login</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-pill">
+          <span class="hero-pill-dot"></span>
+          Portal edukasi kepagarnusaan Pagar Nusa
+        </div>
+        <h1 class="hero-title editable" data-key="heroTitle">
+          Website resmi Pagar Nusa Ngadirojo, pengetahuan untuk santri & pendekar.
+        </h1>
+        <p class="hero-lead editable" data-key="heroLead">
+          Kepagarnusaan adalah sistem nilai, sikap, dan gerakan untuk menjaga keutuhan Negara Kesatuan Republik Indonesia (NKRI)
+          dengan spirit keislaman ala Nahdlatul Ulama: tawasuth (moderat), tasamuh (toleran), tawazun (seimbang), dan i'tidal (tegak lurus).
+        </p>
+        <div class="hero-meta">
+          <span>🥋 Pencak silat, spiritualitas, & kebangsaan</span>
+          <span>🛡 Kader sebagai pagar ulama, umat, dan negara</span>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-photo-wrapper">
+          <img src="pagar-nusa-kader.jpeg" alt="Kader Pagar Nusa" class="hero-photo">
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-logo">
+            <img src="logo-pagar-nusa.png" alt="Logo Pagar Nusa" class="hero-card-logo-img">
+            <span class="hero-card-logo-text">Pagar Nusa</span>
+          </div>
+          <div class="hero-card-title editable" data-key="heroCardTitle">
+            Inti kepagarnusaan Pagar Nusa
+          </div>
+          <div class="editable" data-key="heroCardBody">
+            <ul style="margin-top:6px;padding-left:18px;">
+              <li>Menjaga kehormatan ulama, pesantren, dan jamaah.</li>
+              <li>Menjadi pagar NKRI dari ancaman ideologi yang merusak.</li>
+              <li>Mengamalkan pencak silat sebagai jalan dakwah & pengabdian.</li>
+            </ul>
+          </div>
+          <div class="hero-tags">
+            <span class="tag">Pencak Silat NU</span>
+            <span class="tag">Kepagarnusaan</span>
+            <span class="tag">Hubbul Wathan</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID CONTENT -->
+    <section class="grid">
+      <!-- KONTEN UTAMA -->
+      <article class="card" id="pengertian" data-animate>
+        <div class="section-label">Materi dasar</div>
+        <div class="card-header">
+          <div>
+            <h2 class="card-title editable" data-key="pengertianTitle">Pengertian Kepagarnusaan</h2>
+            <p class="card-subtitle editable" data-key="pengertianSubtitle">
+              Fondasi berpikir dan bersikap seorang warga NU dalam kehidupan berbangsa.
+            </p>
+          </div>
+        </div>
+
+        <div class="editable" data-key="pengertianBody">
+          <p>
+            Secara sederhana, kepagarnusaan dapat dipahami sebagai <strong>sikap "menjadi pagar" bagi Nusantara</strong>.
+            Artinya, warga NU tidak hanya hidup di Indonesia, tetapi ikut menjaga, merawat, dan membentengi Indonesia
+            dari berbagai ancaman yang merusak persatuan, merusak akidah Ahlussunnah wal Jama'ah, serta merusak tatanan sosial.
+          </p>
+          <p style="margin-top:8px;">
+            Sikap ini lahir dari keyakinan bahwa:
+          </p>
+          <ul style="margin-top:6px;padding-left:18px;">
+            <li>Cinta tanah air merupakan bagian dari iman.</li>
+            <li>Syariat Islam dapat dijalankan secara damai dalam bingkai NKRI.</li>
+            <li>Keragaman agama, budaya, dan suku adalah sunnatullah yang harus diterima.</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top:14px;font-size:14px;font-weight:600;">Prinsip-prinsip utama</h3>
+        <ul class="list editable" data-key="prinsipList">
+          <li>
+            <span class="list-bullet"></span>
+            <span><strong>Tawasuth</strong> &mdash; bersikap moderat, tidak ekstrem kiri maupun kanan.</span>
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <span><strong>Tasamuh</strong> &mdash; menghargai perbedaan, tidak mudah mengkafirkan.</span>
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <span><strong>Tawazun</strong> &mdash; seimbang antara hak dan kewajiban, duniawi dan ukhrawi.</span>
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <span><strong>I'tidal</strong> &mdash; berlaku adil dan lurus dalam bersikap.</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="card" id="tujuan" data-animate>
+        <div class="section-label">Pemetaan singkat</div>
+        <div class="card-header">
+          <div>
+            <h2 class="card-title editable" data-key="tujuanTitle">Tujuan Kepagarnusaan</h2>
+            <p class="card-subtitle editable" data-key="tujuanSubtitle">
+              Menguatkan komitmen kebangsaan sekaligus keislaman ala Ahlussunnah wal Jama'ah.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-grid editable" data-key="tujuanGrid">
+          <div>
+            <div class="info-item-label">Fokus utama</div>
+            <div class="info-item-value">Menjaga NKRI & Pancasila</div>
+            <div class="badge-soft">Konstitusi & keislaman berjalan bersama</div>
+          </div>
+          <div>
+            <div class="info-item-label">Sasaran</div>
+            <div class="info-item-value">Kader NU, pelajar, pemuda, santri</div>
+            <div class="badge-soft">Penguatan karakter & ideologi</div>
+          </div>
+          <div>
+            <div class="info-item-label">Pendekatan</div>
+            <div class="info-item-value">Kultural & edukatif</div>
+          </div>
+          <div>
+            <div class="info-item-label">Bentuk kegiatan</div>
+            <div class="info-item-value">Madrasah, diskusi, kajian, aksi sosial</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:14px;font-size:14px;font-weight:600;">Target karakter</h3>
+        <ul class="list editable" data-key="targetKarakter">
+          <li>
+            <span class="list-bullet"></span>
+            <span>Religius tetapi terbuka dan toleran.</span>
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <span>Cinta tanah air, siap membela negara dari ancaman ideologi.</span>
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <span>Kritis terhadap paham takfiri, radikal, dan anti-NKRI.</span>
+          </li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- PRAKTIK & IMPLEMENTASI -->
+    <section class="grid" style="margin-top:20px;" id="praktik">
+      <article class="card" data-animate>
+        <div class="section-label">Implementasi lapangan</div>
+        <div class="card-header">
+          <div>
+            <h2 class="card-title editable" data-key="praktikTitle">Contoh Praktik Kepagarnusaan</h2>
+            <p class="card-subtitle editable" data-key="praktikSubtitle">
+              Dari ruang kelas, masjid, hingga dunia digital.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline editable" data-key="praktikTimeline">
+          <div class="timeline-item">
+            <div class="timeline-title">1. Pendidikan & Madrasah Kepagarnusaan</div>
+            <div class="timeline-desc">
+              Pengajian tematik, madrasah kebangsaan, atau kelas khusus yang membahas hubungan Islam, Pancasila, dan NKRI.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-title">2. Dakwah damai di media sosial</div>
+            <div class="timeline-desc">
+              Konten dakwah yang menekankan moderasi, anti-hoaks, anti-provokasi, dan menolak ujaran kebencian.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-title">3. Keterlibatan sosial & kebangsaan</div>
+            <div class="timeline-desc">
+              Terlibat dalam kegiatan sosial, lingkungan, maupun kebangsaan sebagai wujud nyata cinta tanah air.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card" data-animate>
+        <div class="section-label">Catatan untuk Kader</div>
+        <h2 class="card-title editable" data-key="catatanTitle">
+          Peran Pelajar & Pemuda NU
+        </h2>
+        <p class="card-subtitle editable" data-key="catatanSubtitle">
+          Kepagarnusaan bukan teori, tetapi cara hidup sehari-hari.
+        </p>
+
+        <div class="editable" data-key="catatanBody">
+          <ul class="list">
+            <li>
+              <span class="list-bullet"></span>
+              <span>Aktif mengikuti kajian keagamaan yang moderat & terbuka.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Kritis terhadap narasi yang mengharamkan NKRI, Pancasila, atau bendera merah putih.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Menjadi agen penyejuk di tengah perbedaan pandangan politik dan keagamaan.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-top:12px;" class="editable" data-key="catatanFooter">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            <span>“Santri Nusantara, benteng NKRI.”</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SELENGKAPNYA -->
+    <section class="card selengkapnya-section" data-animate>
+      <div class="section-label">Selengkapnya</div>
+      <h2 class="card-title">Pelajari lebih dalam tentang Pagar Nusa</h2>
+      <p class="card-subtitle">
+        Halaman-halaman berikut bisa kamu isi sendiri: sejarah, prasetya, tingkatan, arti badge, dan struktur pimpinan Pagar Nusa.
+      </p>
+
+      <div class="selengkapnya-grid">
+        <a href="sejarah-pagarnusa.html" class="selengkapnya-btn">
+          <span class="icon">📜</span>
+          <span>Sejarah Pagar Nusa</span>
+        </a>
+        <a href="prasetya-pagarnusa.html" class="selengkapnya-btn">
+          <span class="icon">🛡</span>
+          <span>Prasetya Pagar Nusa</span>
+        </a>
+        <a href="tingkatan-pagarnusa.html" class="selengkapnya-btn">
+          <span class="icon">📈</span>
+          <span>Tingkatan Pagar Nusa</span>
+        </a>
+        <a href="arti-badge-pagarnusa.html" class="selengkapnya-btn">
+          <span class="icon">🎖</span>
+          <span>Arti Badge Pagar Nusa</span>
+        </a>
+        <a href="struktur-pimpinan-pagarnusa.html" class="selengkapnya-btn">
+          <span class="icon">🏛</span>
+          <span>Struktur Pimpinan Pagar Nusa</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ADMIN PANEL -->
+    <section class="admin-panel" id="adminPanel">
+      <div class="admin-panel-header">
+        <div>
+          <div class="admin-title">Mode Admin Aktif</div>
+          <div class="admin-badge">Klik langsung teks di halaman untuk mengedit. Simpan saat sudah selesai.</div>
+        </div>
+        <div class="admin-actions">
+          <button class="admin-btn" id="saveChangesBtn">💾 Simpan Perubahan</button>
+          <button class="admin-btn" id="resetChangesBtn">♻️ Reset ke Default</button>
+          <button class="admin-btn" id="logoutBtn">🚪 Keluar (Admin / Santri)</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Portal Kepagarnusaan Pagar Nusa. Konten bisa dikembangkan sesuai kebutuhan lembaga.</div>
+    <div class="footer-link" onclick="alert('Tambah panduan admin di file ini kalau sudah siap. Sekarang fokus latihan jurus dulu. 😎')">
+      Panduan admin
+    </div>
+  </footer>
+
+  <script>
+    // =====================
+    // KONFIGURASI LOGIN
+    // =====================
+    const ADMIN_USERNAME = "admin";
+    const ADMIN_PASSWORD = "kepagar123";
+
+    // =====================
+    // DOM ELEMENTS
+    // =====================
+    const loginBtn = document.getElementById("loginBtn");
+    const loginBtnText = document.getElementById("loginBtnText");
+    const loginBackdrop = document.getElementById("loginBackdrop");
+    const loginModal = document.getElementById("loginModal");
+    const closeLogin = document.getElementById("closeLogin");
+    const loginForm = document.getElementById("loginForm");
+    const loginError = document.getElementById("loginError");
+    const adminPanel = document.getElementById("adminPanel");
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+    const saveChangesBtn = document.getElementById("saveChangesBtn");
+    const resetChangesBtn = document.getElementById("resetChangesBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const yearSpan = document.getElementById("year");
+    const tabAdmin = document.getElementById("tabAdmin");
+    const tabSantri = document.getElementById("tabSantri");
+    const adminFields = document.getElementById("adminFields");
+    const santriFields = document.getElementById("santriFields");
+    const kataKunciInput = document.getElementById("kataKunci");
+
+    let isAdmin = false;
+    let isSantri = false;
+    let currentMode = "admin"; // "admin" | "santri"
+
+    // =====================
+    // UTILITAS
+    // =====================
+    function showToast(message) {
+      toastMessage.textContent = message;
+      toast.style.display = "flex";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2600);
+    }
+
+    function openLoginModal() {
+      loginBackdrop.style.display = "flex";
+      loginError.style.display = "none";
+      loginForm.reset();
+      if (currentMode === "admin") {
+        document.getElementById("username").focus();
+      } else {
+        kataKunciInput.focus();
+      }
+    }
+
+    function closeLoginModal() {
+      loginBackdrop.style.display = "none";
+      loginModal.classList.remove("shake");
+    }
+
+    function enableEditMode() {
+      document.querySelectorAll(".editable").forEach((el) => {
+        el.contentEditable = "true";
+        el.classList.add("edit-mode");
+      });
+      adminPanel.style.display = "block";
+      loginBtnText.textContent = "Admin";
+      loginBtn.classList.add("is-admin");
+      loginBtn.classList.remove("is-santri");
+      document.body.classList.add("admin-mode");
+      document.body.classList.remove("santri-mode");
+      showToast("Login admin berhasil. Edit teks langsung di halaman.");
+    }
+
+    function disableEditMode() {
+      document.querySelectorAll(".editable").forEach((el) => {
+        el.contentEditable = "false";
+        el.classList.remove("edit-mode");
+      });
+      adminPanel.style.display = "none";
+      document.body.classList.remove("admin-mode");
+    }
+
+    function activateSantriMode() {
+      isSantri = true;
+      loginBtnText.textContent = "Santri";
+      loginBtn.classList.add("is-santri");
+      loginBtn.classList.remove("is-admin");
+      document.body.classList.add("santri-mode");
+      document.body.classList.remove("admin-mode");
+      adminPanel.style.display = "none";
+      showToast("Selamat datang, santri Pagar Nusa. Jaga adab & jaga negeri.");
+    }
+
+    function clearModes() {
+      isAdmin = false;
+      isSantri = false;
+      disableEditMode();
+      loginBtnText.textContent = "Login";
+      loginBtn.classList.remove("is-admin","is-santri");
+      document.body.classList.remove("admin-mode","santri-mode");
+    }
+
+    function saveContentToStorage() {
+      const data = {};
+      document.querySelectorAll(".editable").forEach((el) => {
+        const key = el.getAttribute("data-key");
+        if (key) {
+          data[key] = el.innerHTML;
+        }
+      });
+      localStorage.setItem("kepagarnusaanContent", JSON.stringify(data));
+      showToast("Perubahan konten disimpan di browser ini.");
+    }
+
+    function loadContentFromStorage() {
+      const raw = localStorage.getItem("kepagarnusaanContent");
+      if (!raw) return;
+      try {
+        const data = JSON.parse(raw);
+        document.querySelectorAll(".editable").forEach((el) => {
+          const key = el.getAttribute("data-key");
+          if (key && data[key]) {
+            el.innerHTML = data[key];
+          }
+        });
+      } catch (e) {
+        console.error("Gagal memuat konten dari localStorage", e);
+      }
+    }
+
+    function resetContent() {
+      localStorage.removeItem("kepagarnusaanContent");
+      location.reload();
+    }
+
+    // =====================
+    // LOGIN MODE HANDLER
+    // =====================
+    function setLoginMode(mode) {
+      currentMode = mode;
+      if (mode === "admin") {
+        tabAdmin.classList.add("active");
+        tabSantri.classList.remove("active");
+        adminFields.style.display = "block";
+        santriFields.style.display = "none";
+      } else {
+        tabAdmin.classList.remove("active");
+        tabSantri.classList.add("active");
+        adminFields.style.display = "none";
+        santriFields.style.display = "block";
+      }
+      loginError.style.display = "none";
+      loginModal.classList.remove("shake");
+    }
+
+    tabAdmin.addEventListener("click", () => setLoginMode("admin"));
+    tabSantri.addEventListener("click", () => setLoginMode("santri"));
+
+    // =====================
+    // EVENT LISTENERS
+    // =====================
+    loginBtn.addEventListener("click", () => {
+      openLoginModal();
+    });
+
+    closeLogin.addEventListener("click", closeLoginModal);
+    loginBackdrop.addEventListener("click", (e) => {
+      if (e.target === loginBackdrop) {
+        closeLoginModal();
+      }
+    });
+
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      loginModal.classList.remove("shake");
+      loginError.style.display = "none";
+
+      if (currentMode === "admin") {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+          isAdmin = true;
+          closeLoginModal();
+          enableEditMode();
+        } else {
+          loginError.innerHTML = "<strong>Admin salah.</strong> Username / password tidak cocok.";
+          loginError.style.display = "block";
+          loginModal.classList.add("shake");
+        }
+      } else {
+        const key = kataKunciInput.value.trim().toLowerCase();
+        if (key === "pagar nusa" || key === "pagarnya_nu_dan_bangsa") {
+          closeLoginModal();
+          activateSantriMode();
+        } else {
+          loginError.innerHTML = "<strong>Kata kunci salah.</strong> Ingat: <code>pagar nusa</code> atau <code>pagarnya_nu_dan_bangsa</code>.";
+          loginError.style.display = "block";
+          loginModal.classList.add("shake");
+        }
+      }
+    });
+
+    saveChangesBtn.addEventListener("click", () => {
+      if (!isAdmin) {
+        showToast("Hanya admin yang boleh menyimpan perubahan.");
+        return;
+      }
+      saveContentToStorage();
+    });
+
+    resetChangesBtn.addEventListener("click", () => {
+      if (!isAdmin) {
+        showToast("Reset konten cuma bisa dilakukan oleh admin.");
+        return;
+      }
+      if (confirm("Yakin reset semua perubahan dan kembali ke versi awal?")) {
+        resetContent();
+      }
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      clearModes();
+      showToast("Kamu keluar dari mode admin / santri.");
+    });
+
+    // =====================
+    // SCROLL ANIMATION
+    // =====================
+    const animatedCards = document.querySelectorAll("[data-animate]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    animatedCards.forEach((card) => observer.observe(card));
+
+    // =====================
+    // INIT
+    // =====================
+    yearSpan.textContent = new Date().getFullYear();
+    loadContentFromStorage();
+  </script>
+</body>
+</html>

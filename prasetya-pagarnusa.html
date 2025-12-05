@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prasetya Pagar Nusa - PSNU Resmi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <style>
+    :root {
+      --primary: #16a34a;
+      --accent: #facc15;
+      --bg: #020617;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --radius: 16px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.7);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: radial-gradient(circle at top, #062c22 0%, #020617 40%, #000 100%);
+      animation: bgMove 16s ease infinite;
+      line-height: 1.7;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    @keyframes bgMove {
+      0%,100% { background-position: 0 0; }
+      50% { background-position: 100% 100%; }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15,23,42,0.9);
+      border-bottom: 1px solid rgba(148,163,184,0.4);
+      backdrop-filter: blur(18px);
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1000px;
+      margin: auto;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 38px;
+      height: 38px;
+      background: radial-gradient(circle,#16a34a,#064e3b);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid #22c55e;
+      box-shadow: 0 0 16px rgba(34,197,94,0.8);
+    }
+
+    .logo-img { width: 100%; height: 100%; object-fit: contain; }
+
+    .brand-title { font-size: 16px; font-weight: 700; }
+    .brand-sub { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+
+    .back-link {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid var(--muted);
+      border-radius: 999px;
+      gap: 6px;
+      color: var(--text);
+      background: rgba(15,23,42,0.9);
+      font-size: 12px;
+      transition: 0.3s;
+    }
+    .back-link:hover {
+      box-shadow: 0 0 16px #22c55e;
+      border-color: #22c55e;
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+    .hero {
+      margin: 24px auto;
+      max-width: 1000px;
+      padding: 22px 20px;
+      border-radius: 18px;
+      background: linear-gradient(to right,#064e3bdd,#020617ee);
+      border: 1px solid rgba(34,197,94,0.3);
+      box-shadow: var(--shadow);
+      animation: floatUp .7s ease-out;
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(250,204,21,0.9);
+      animation: flickerGlow 5s infinite;
+    }
+
+    @keyframes flickerGlow {
+      0%,100% { opacity: 1; }
+      47% { opacity: .85; }
+      50% { opacity: .65; }
+      52% { opacity: .9; }
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: #cbd5f5;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 1000px;
+      margin: 20px auto 40px;
+      padding: 0 14px;
+    }
+
+    .card {
+      background: rgba(2,6,23,0.85);
+      border: 1px solid rgba(148,163,184,0.35);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: .5s;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+      letter-spacing: .15em;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #bbf7d0;
+    }
+
+    .prasetya-intro {
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #e2e8f0;
+    }
+
+    .prasetya-point {
+      margin-top: 6px;
+      padding: 10px 12px;
+      border-left: 3px solid var(--primary);
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      font-size: 14px;
+      color: #e2e8f0;
+    }
+
+    ul { margin-top: 10px; list-style: none; padding-left: 0; }
+    li { margin: 6px 0; display: flex; gap: 8px; }
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-top: 6px;
+    }
+
+    footer {
+      max-width: 1000px;
+      margin: auto;
+      padding: 10px 14px 30px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-left">
+      <div class="logo-circle">
+        <img src="logo-pagar-nusa.png" class="logo-img" alt="Logo Pagar Nusa">
+      </div>
+      <div>
+        <div class="brand-title">Pagar Nusa</div>
+        <div class="brand-sub">Prasetya</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">
+      ← Kembali
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 class="hero-title">Prasetya Pagar Nusa</h1>
+  <p class="hero-sub">
+    Ikrar kehormatan seorang pesilat NU Pagar Nusa.  
+    Dibaca dengan penuh disiplin, ta’dzim, dan siap diamalkan lahir batin.
+  </p>
+</section>
+
+<div class="content">
+
+  <!-- Prasetya -->
+
+  <div class="card" data-animate>
+    <div class="section-label">Teks Prasetya</div>
+    <h2 class="card-title">Prasetya Pagar Nusa</h2>
+
+    <p class="prasetya-intro">
+      <strong>Prasetya Pagar Nusa!</strong>  
+      Kami pesilat NU Pagar Nusa sanggup melaksanakan:
+    </p>
+
+    <div class="prasetya-point">
+      1. Bertaqwa kepada Allah SWT.
+    </div>
+    <div class="prasetya-point">
+      2. Berbakti kepada nusa dan bangsa.
+    </div>
+    <div class="prasetya-point">
+      3. Menjunjung tinggi persatuan dan kesatuan.
+    </div>
+    <div class="prasetya-point">
+      4. Mempertahankan kebenaran dan mencegah kemungkaran.
+    </div>
+    <div class="prasetya-point">
+      5. Mempertahankan faham Ahlussunnah wal Jama'ah.
+    </div>
+  </div>
+
+  <!-- Nilai Prasetya -->
+  <div class="card" data-animate>
+    <div class="section-label">Makna & Nilai</div>
+    <h2 class="card-title">Nilai-Nilai dalam Prasetya</h2>
+
+    <ul>
+      <li><div class="dot"></div> <span>Kata “sanggup” berarti siap lahir batin, bukan sekadar hafal teks.</span></li>
+      <li><div class="dot"></div> <span>Ketaqwaan menjadi sumber kekuatan, bukan ego atau kesombongan.</span></li>
+      <li><div class="dot"></div> <span>Berbakti kepada nusa dan bangsa adalah wujud nyata hubbul wathan.</span></li>
+      <li><div class="dot"></div> <span>Persatuan & kesatuan dijaga, baik di dalam tubuh Pagar Nusa maupun di tengah masyarakat.</span></li>
+      <li><div class="dot"></div> <span>Faham Ahlussunnah wal Jama'ah menjadi kompas akidah setiap pendekar.</span></li>
+    </ul>
+  </div>
+
+  <!-- Catatan -->
+  <div class="card" data-animate>
+    <div class="section-label">Catatan Latihan</div>
+    <h2 class="card-title">Adab Membaca Prasetya</h2>
+
+    <p>Prasetya biasanya dibaca bersama sebelum atau sesudah latihan, pengukuhan, dan acara resmi Pagar Nusa.</p>
+    <p>Suara boleh keras dan tegas, tapi hati tetap khusyuk: yang diucapkan adalah janji kepada Allah, ulama, dan bangsa.</p>
+  </div>
+
+</div>
+
+<footer>
+  © <span id="year"></span> Pagar Nusa. Halaman Prasetya ini bisa kamu sesuaikan lagi dengan format latihan di ranting/cabangmu.
+</footer>
+
+<script>
+  // Tahun otomatis
+  document.getElementById("year").innerText = new Date().getFullYear();
+
+  // Animasi scroll
+  const cards = document.querySelectorAll("[data-animate]");
+  const reveal = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        reveal.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach((c) => reveal.observe(c));
+</script>
+
+</body>
+</html>

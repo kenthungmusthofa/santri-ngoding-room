@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sejarah Pagar Nusa - Pencak Silat Nahdlatul Ulama</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #16a34a;
+      --primary-dark: #065f46;
+      --accent: #facc15;
+      --bg: #020617;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --radius: 16px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #022c22 0%, #020617 40%, #000 100%);
+      background-size: 200% 200%;
+      color: var(--text);
+      line-height: 1.7;
+      animation: bgMove 16s ease-in-out infinite;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(16px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes flickerTitle {
+      0%,19%,21%,23%,25%,54%,56%,100% {
+        text-shadow: 0 0 10px rgba(248,250,252,0.8),
+                     0 0 24px rgba(34,197,94,0.7);
+      }
+      20%,24%,55% { text-shadow: none; }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15,23,42,0.95);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .nav {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #16a34a, #022c22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 14px rgba(34,197,94,0.8);
+      border: 1px solid rgba(74,222,128,0.9);
+      overflow: hidden;
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .back-link {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 12px;
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: radial-gradient(circle at top,#0f172a,#020617);
+      cursor: pointer;
+      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease, border-color 0.15s ease;
+    }
+
+    .back-link span.icon {
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      background: radial-gradient(circle at top,#111827,#020617);
+      box-shadow: 0 0 16px rgba(34,197,94,0.7);
+      border-color: rgba(34,197,94,1);
+      transform: translateY(-1px);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 18px auto 40px;
+      padding: 0 16px;
+    }
+
+    .hero {
+      margin-top: 10px;
+      padding: 22px 20px 20px;
+      border-radius: 20px;
+      background: radial-gradient(circle at top left,#064e3b,#020617);
+      border: 1px solid rgba(55,65,81,0.9);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      animation: floatUp 0.7s ease-out;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(34,197,94,0.12), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(250,204,21,0.12), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      font-size: 11px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(34,197,94,0.8);
+      box-shadow: 0 0 16px rgba(34,197,94,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+      animation: flickerTitle 5s infinite;
+    }
+
+    .hero-subtitle {
+      font-size: 13px;
+      color: #e5e7eb;
+      max-width: 620px;
+    }
+
+    .hero-meta {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: #cbd5f5;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta span.icon {
+      font-size: 14px;
+    }
+
+    .layout {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top,#020617,#020617);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(55,65,81,0.9);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(34,197,94,0.07), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(250,204,21,0.04), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      animation: floatUp 0.6s ease-out;
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    p + p {
+      margin-top: 6px;
+    }
+
+    .highlight {
+      color: #bbf7d0;
+      font-weight: 600;
+    }
+
+    .list {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .list li {
+      padding: 5px 0;
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .list-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      margin-top: 7px;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .quote-box {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: rgba(15,23,42,0.9);
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .quote-box span.mark {
+      color: var(--accent);
+      font-size: 18px;
+      line-height: 0;
+      vertical-align: middle;
+      margin-right: 2px;
+    }
+
+    .timeline {
+      border-left: 2px solid rgba(55,65,81,0.9);
+      margin-top: 10px;
+      padding-left: 14px;
+    }
+
+    .timeline-item {
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: 4px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #020617;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 12px rgba(34,197,94,0.9);
+    }
+
+    .timeline-year {
+      font-size: 12px;
+      color: #bbf7d0;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 2px;
+    }
+
+    .timeline-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .timeline-desc {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .badge-soft {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      font-size: 11px;
+      color: #e5e7eb;
+      background: rgba(15,23,42,0.9);
+      margin-top: 6px;
+    }
+
+    .small-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .mini-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: #cbd5f5;
+      margin-top: 6px;
+    }
+
+    footer {
+      max-width: 1000px;
+      margin: 0 auto 24px;
+      padding: 0 16px;
+      font-size: 11px;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="nav">
+    <div class="nav-left">
+      <div class="logo-circle">
+        <img src="logo-pagar-nusa.png" alt="Logo Pagar Nusa" class="logo-img">
+      </div>
+      <div class="brand-text">
+        <div class="brand-title">Pagar Nusa</div>
+        <div class="brand-sub">Sejarah • Kepagarnusaan</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">
+      <span class="icon">←</span>
+      <span>Kembali ke beranda</span>
+    </a>
+  </div>
+</header>
+
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        Sejarah resmi Pencak Silat Nahdlatul Ulama Pagar Nusa
+      </div>
+      <h1 class="hero-title">
+        Lahirnya Pagar Nusa: Pagarnya NU dan Bangsa
+      </h1>
+      <p class="hero-subtitle">
+        Pagar Nusa adalah organisasi pencak silat di bawah naungan Nahdlatul Ulama yang berdiri pada
+        <span class="highlight">22 Rabi’ul Akhir 1406 H / 3 Januari 1986 M</span> di Pondok Pesantren
+        Lirboyo, Kediri, Jawa Timur. Organisasi ini lahir untuk menyatukan berbagai perguruan silat
+        di lingkungan NU yang sebelumnya berjalan sendiri-sendiri.
+      </p>
+
+      <div class="hero-meta">
+        <span><span class="icon">🥋</span> Wadah resmi pendekar NU</span>
+        <span><span class="icon">🛡</span> “Pagarnya NU dan bangsa”</span>
+        <span><span class="icon">📍</span> Lirboyo & Tebuireng, Jawa Timur</span>
+      </div>
+    </section>
+
+    <section class="layout">
+      <!-- KONTEN KIRI -->
+      <article class="card" data-animate>
+        <div class="section-label">Awal berdiri</div>
+        <h2 class="card-title">Kegelisahan para ulama & lahirnya organisasi</h2>
+        <p>
+          Menjelang pertengahan tahun 1980-an, banyak <span class="highlight">kiai dan aktivis pencak silat NU</span>
+          merasa gelisah. Di satu sisi, tradisi pencak silat di pesantren mulai surut. Di sisi lain, muncul
+          berbagai perguruan di luar NU yang berkembang pesat, sementara pendekar-pendekar NU tidak memiliki
+          wadah resmi untuk bernaung.
+        </p>
+        <p>
+          Dari kegelisahan itu lahirlah gagasan mendirikan organisasi pencak silat yang <strong>jelas sanadnya
+          kepada para kiai</strong> dan tegas berpijak pada jam’iyyah Nahdlatul Ulama. Tujuannya bukan hanya
+          latihan fisik, tetapi juga menjaga aqidah Ahlussunnah wal Jama'ah serta mengabdi kepada umat dan negara.
+        </p>
+
+        <div class="quote-box">
+          <span class="mark">“</span>
+          Nama <strong>Pagar Nusa</strong> dimaknai sebagai
+          <span class="highlight">pagarnya NU dan bangsa</span>:
+          benteng yang melindungi ulama, jamaah, dan tanah air dari berbagai ancaman lahir maupun batin.
+        </div>
+
+        <h3 class="card-title" style="margin-top:14px;font-size:15px;">Gagasan utama Pagar Nusa</h3>
+        <ul class="list">
+          <li>
+            <span class="list-bullet"></span>
+            <span>Menyatukan perguruan-perguruan silat di lingkungan NU dalam satu wadah resmi.</span>
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <span>Menjadikan pencak silat sebagai media dakwah, penguatan akidah, dan pengabdian sosial.</span>
+          </li>
+          <li>
+            <span class="list-bullet"></span>
+            <span>Menyiapkan kader pendekar yang siap menjaga ulama, pesantren, dan NKRI.</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- KONTEN KANAN: TIMELINE -->
+      <aside class="card" data-animate>
+        <div class="section-label">Linimasa singkat</div>
+        <h2 class="card-title">Perjalanan awal Pagar Nusa</h2>
+        <p class="card-subtitle">
+          Dari musyawarah kecil para kiai hingga menjadi badan otonom resmi di lingkungan Nahdlatul Ulama.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">27 SEPTEMBER 1985</div>
+            <div class="timeline-title">Musyawarah di Tebuireng, Jombang</div>
+            <div class="timeline-desc">
+              Para ulama dan aktivis pencak silat NU bermusyawarah di Pondok Pesantren Tebuireng untuk merumuskan
+              perlunya organisasi pencak silat yang berafiliasi pada NU dan berperan menjaga martabat pesantren.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">3 JANUARI 1986</div>
+            <div class="timeline-title">Pendirian di Lirboyo, Kediri</div>
+            <div class="timeline-desc">
+              Musyawarah lanjutan di Pondok Pesantren Lirboyo menetapkan pendirian organisasi pencak silat dengan nama
+              <span class="highlight">Pagar Nusa</span>. KH. Abdulloh Maksum Jauhari (Gus Maksum) dipilih sebagai
+              Ketua Umum pertama.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">16 JULI 1986</div>
+            <div class="timeline-title">Ditetapkan sebagai badan otonom NU</div>
+            <div class="timeline-desc">
+              Pengurus Besar Nahdlatul Ulama meresmikan Pagar Nusa sebagai salah satu
+              <strong>badan otonom</strong> di lingkungan NU yang fokus pada pengembangan seni bela diri,
+              budaya, ketabiban, dan pengabdian masyarakat.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">SELANJUTNYA</div>
+            <div class="timeline-title">Perkembangan ke seluruh Nusantara</div>
+            <div class="timeline-desc">
+              Cabang-cabang Pagar Nusa tumbuh di berbagai provinsi, pesantren, dan lembaga pendidikan.
+              Para santri dan pemuda NU bergabung sebagai pendekar yang siap menjadi
+              <em>pagar ulama, umat, dan negara</em>.
+            </div>
+          </div>
+        </div>
+
+        <div class="badge-soft">
+          Nama resmi: <strong>IPS-NU - LPS-NU - IPS-NU - PSNU)</strong>.
+        </div>
+      </aside>
+    </section>
+
+    <!-- BAGIAN BAWAH -->
+    <section class="card" style="margin-top:22px;" data-animate>
+      <div class="section-label">Makna & peran</div>
+      <h2 class="card-title">Makna nama & peran Pagar Nusa hari ini</h2>
+      <p>
+        Secara harfiah, <span class="highlight">Pagar Nusa</span> sering dimaknai sebagai
+        <strong>“pagarnya NU dan bangsa”</strong>. Pagar bukan hanya soal kekuatan fisik, tetapi juga
+        keteguhan akidah, akhlak, dan loyalitas kepada ulama serta tanah air.
+      </p>
+
+      <div class="small-grid">
+        <div>
+          <div class="mini-title">Makna nama “Pagar Nusa”</div>
+          <ul class="list">
+            <li>
+              <span class="list-bullet"></span>
+              <span>
+                <strong>Pagar</strong> &mdash; lambang perlindungan, penjagaan, dan kewaspadaan terhadap
+                ancaman yang merusak umat dan negara.
+              </span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>
+                <strong>Nusa</strong> &mdash; merujuk pada Nusantara, tanah air Indonesia, sekaligus
+                komunitas besar Nahdliyin di berbagai penjuru.
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="mini-title">Peran strategis Pagar Nusa</div>
+          <ul class="list">
+            <li>
+              <span class="list-bullet"></span>
+              <span>Menjaga dan mengembangkan pencak silat sebagai warisan budaya Nusantara.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Menyiapkan kader yang siap lahir batin dalam menjaga ulama, pesantren, dan NKRI.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Menghadirkan dakwah yang tegas, elegan, dan bermartabat melalui seni bela diri.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="tagline">
+        Dari pelataran pesantren hingga gelanggang kejuaraan, Pagar Nusa hadir sebagai
+        <strong>benteng tradisi, aqidah, dan kebangsaan</strong>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Pagar Nusa. Halaman sejarah ini dapat dikembangkan sesuai kebutuhan cabang / komisariat.</div>
+    <div class="footer-link" onclick="alert('Silakan tambahkan foto-foto dokumentasi sejarah kalau sudah siap. Jangan lupa izin ke pengurus.')">
+      Catatan pengembangan
+    </div>
+  </footer>
+
+  <script>
+    const yearSpan = document.getElementById("year");
+    yearSpan.textContent = new Date().getFullYear();
+
+    const cards = document.querySelectorAll("[data-animate]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+  </script>
+</body>
+</html>

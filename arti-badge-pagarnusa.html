@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arti Lambang Pagar Nusa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --primary: #16a34a;
+      --accent: #facc15;
+      --bg: #020617;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --radius: 16px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.75);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: radial-gradient(circle at top, #032a22 0%, #020617 40%, #000 100%);
+      background-size: 200% 200%;
+      animation: bgMove 18s ease-in-out infinite;
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    @keyframes bgMove {
+      0%,100% { background-position: 0 0; }
+      50%      { background-position: 100% 100%; }
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15,23,42,0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(148,163,184,0.4);
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #16a34a, #064e3b);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid #22c55e;
+      box-shadow: 0 0 16px rgba(34,197,94,0.85);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .back-link {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--muted);
+      background: rgba(15,23,42,0.9);
+      font-size: 12px;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+    }
+
+    .back-link:hover {
+      border-color: #22c55e;
+      box-shadow: 0 0 16px rgba(34,197,94,0.9);
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1000px;
+      margin: 22px auto 12px;
+      padding: 22px 20px;
+      border-radius: 18px;
+      background: linear-gradient(to right, #064e3b, #020617ee);
+      border: 1px solid rgba(34,197,94,0.5);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr);
+      gap: 20px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(34,197,94,0.16), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(250,204,21,0.16), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-logo {
+      width: 220px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 16px rgba(34,197,94,0.9));
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .hero-logo {
+        width: 180px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(34,197,94,0.8);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+      margin-bottom: 8px;
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      text-shadow: 0 0 10px rgba(250,204,21,0.9);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    /* CONTENT */
+
+    .content {
+      max-width: 1000px;
+      margin: 18px auto 40px;
+      padding: 0 14px;
+    }
+
+    .card {
+      background: rgba(2,6,23,0.9);
+      border-radius: var(--radius);
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow);
+      padding: 18px 18px 16px;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(34,197,94,0.07), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(250,204,21,0.05), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #bbf7d0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .point {
+      padding: 9px 10px;
+      border-radius: 10px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: 13px;
+    }
+
+    .point-title {
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: 2px;
+    }
+
+    .point-text {
+      font-size: 12px;
+      color: #cbd5f5;
+    }
+
+    .highlight {
+      color: #bbf7d0;
+      font-weight: 600;
+    }
+
+    footer {
+      max-width: 1000px;
+      margin: 0 auto 26px;
+      padding: 0 14px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">
+          <img src="logo-pagar-nusa.png" alt="Logo Pagar Nusa" class="logo-img">
+        </div>
+        <div>
+          <div class="brand-title">Pagar Nusa</div>
+          <div class="brand-sub">Arti Lambang Resmi</div>
+        </div>
+      </div>
+
+      <a href="index.html" class="back-link">
+        <span class="icon">←</span>
+        <span>Kembali</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-logo-wrap">
+      <img src="logo-pagar-nusa.png" alt="Badge Pagar Nusa" class="hero-logo">
+    </div>
+    <div>
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        Arti lambang pagar nusa
+      </div>
+      <h1 class="hero-title">Makna Setiap Unsur Badge Pagar Nusa</h1>
+      <p class="hero-sub">
+        Ringkasan resmi dari Pusdiklat Pagar Nusa Jawa Timur tentang lambang Pencak Silat Nahdlatul Ulama
+        Pagar Nusa: siapa yang dijaga, apa yang dijunjung, dan nilai apa yang dibawa.
+      </p>
+    </div>
+  </section>
+
+  <main class="content">
+    <!-- Tulisan & warna -->
+    <section class="card" data-animate>
+      <div class="section-label">Tulisan & warna</div>
+      <h2 class="section-title">Identitas & Warna Lambang</h2>
+
+      <div class="grid">
+        <div class="point">
+          <div class="point-title">Tulisan “Pencak Silat Nahdlatul Ulama”</div>
+          <div class="point-text">
+            Menjelaskan bahwa pencak silat Pagar Nusa berdiri di bawah <span class="highlight">naungan Nahdlatul Ulama</span>.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">Tulisan “Pagar Nusa”</div>
+          <div class="point-text">
+            Dimaknai sebagai <span class="highlight">pagarnya NU dan bangsa</span>, benteng yang menjaga ulama, umat, dan negara.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">Lafadz “Lā gāliba illā billāh”</div>
+          <div class="point-text">
+            Berarti <span class="highlight">“tiada kemenangan kecuali pertolongan dari Allah SWT”</span>.
+            Mengingatkan bahwa kekuatan pendekar bukan pada otot, tetapi pada tawakal.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">Warna Hijau</div>
+          <div class="point-text">
+            Melambangkan <span class="highlight">kesuburan</span>, kehidupan, dan identitas warna khas Nahdlatul Ulama.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">Warna Putih</div>
+          <div class="point-text">
+            Menggambarkan <span class="highlight">kesucian</span>: niat, tujuan, dan perjuangan yang bersih karena Allah SWT.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bintang & figur -->
+    <section class="card" data-animate>
+      <div class="section-label">Bintang & tokoh</div>
+      <h2 class="section-title">Makna Bintang di Lambang</h2>
+
+      <div class="grid">
+        <div class="point">
+          <div class="point-title">Bintang Besar di Tengah</div>
+          <div class="point-text">
+            Melambangkan <span class="highlight">Nabi Muhammad SAW</span>, suri teladan tertinggi bagi setiap pendekar Pagar Nusa.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">9 Bintang</div>
+          <div class="point-text">
+            Melambangkan <span class="highlight">Wali Sembilan (Wali Songo)</span>, para penyebar Islam di Nusantara.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">4 Bintang di Kiri</div>
+          <div class="point-text">
+            Melambangkan <span class="highlight">empat mazhab fiqih</span> dalam Ahlussunnah wal Jama'ah.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">4 Bintang di Kanan</div>
+          <div class="point-text">
+            Melambangkan <span class="highlight">Khulafā’ur Rāsyidīn</span>: Abu Bakar, Umar, Utsman, dan Ali radhiyallāhu ‘anhum.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bentuk, garis, senjata -->
+    <section class="card" data-animate>
+      <div class="section-label">Bentuk & senjata</div>
+      <h2 class="section-title">Simbol Bela Diri & Aqidah</h2>
+
+      <div class="grid">
+        <div class="point">
+          <div class="point-title">Trisula</div>
+          <div class="point-text">
+            Melambangkan <span class="highlight">senjata tertua Nusantara</span>, simbol kewaspadaan dan kesiapsiagaan dalam membela kebenaran.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">Bola Dunia</div>
+          <div class="point-text">
+            Menandakan bahwa Pagar Nusa bersifat <span class="highlight">universal</span>, pencak silat dapat berdiri dan berkembang
+            di seluruh penjuru dunia.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">Kurva Segilima</div>
+          <div class="point-text">
+            Melambangkan <span class="highlight">Rukun Islam dan Pancasila</span>, dua dasar yang menyatu dalam perjuangan Pagar Nusa.
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="point-title">Tiga Garis Tepi</div>
+          <div class="point-text">
+            Tiga garis pada sisi luar lambang dimaknai sebagai <span class="highlight">Iman, Islam, dan Ihsan</span>, tingkatan
+            kesempurnaan beragama yang menjadi orientasi hidup seorang pendekar.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Pagar Nusa. Makna lambang ini diringkas dari infografis resmi “Arti Lambang Pagar Nusa” Pusdiklat Pagar Nusa Jawa Timur.
+  </footer>
+
+  <script>
+    // tahun
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // animasi scroll
+    const cards = document.querySelectorAll("[data-animate]");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    cards.forEach((card) => observer.observe(card));
+  </script>
+</body>
+</html>
