@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Akses Materi Pagar Nusa</title>
+<style>
+    body {
+        background:#020617;
+        font-family: sans-serif;
+        color:white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        flex-direction:column;
+    }
+    input {
+        padding:10px;
+        border-radius:6px;
+        border:none;
+        width:220px;
+        text-align:center;
+        margin-top:10px;
+    }
+    button {
+        margin-top:10px;
+        padding:10px 20px;
+        border:none;
+        border-radius:6px;
+        background:#16a34a;
+        color:white;
+        cursor:pointer;
+    }
+    .error {
+        color:#f87171;
+        margin-top:10px;
+    }
+</style>
+</head>
+<body>
+
+<h2>Masukkan Kata Kunci</h2>
+<p>Akses dibatasi untuk anggota Pagar Nusa.</p>
+
+<input type="password" id="kunci" placeholder="Kata kunci...">
+
+<button onclick="cekKunci()">Masuk</button>
+
+<div class="error" id="err"></div>
+
+<script>
+function cekKunci() {
+    const pass = document.getElementById("kunci").value;
+    const tujuan = new URLSearchParams(window.location.search).get("tujuan");
+
+    if (pass === "PagarnyaNUdanBangsa") {
+        // Tentukan tujuan sesuai parameter
+        let halaman = "";
+
+        switch(tujuan) {
+            case "sejarah": halaman = "sejarah-pagarnusa.html"; break;
+            case "prasetya": halaman = "prasetya-pagarnusa.html"; break;
+            case "arti-badge": halaman = "arti-badge-pagarnusa.html"; break;
+            case "tingkatan": halaman = "tingkatan-pagarnusa.html"; break;
+            case "struktur": halaman = "struktur-pimpinan-pagarnusa.html"; break;
+            default: halaman = "index.html";
+        }
+
+        window.location.href = halaman;
+    } else {
+        document.getElementById("err").textContent = "Kata kunci salah!";
+    }
+}
+</script>
+
+</body>
+</html>
